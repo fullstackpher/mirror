@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+target=198.44.170.238
+
+bash scripts/utils/cmd.sh $target "docker rm -f mirror"
+bash scripts/utils/cmd.sh $target "docker rmi registry.cn-hangzhou.aliyuncs.com/vgonet/mirror:latest"
+
+bash scripts/utils/cmd.sh $target "docker pull registry.cn-hangzhou.aliyuncs.com/vgonet/mirror:latest" && \
+bash scripts/utils/cmd.sh $target "docker run --name mirror -d -p 39120:8080 -e spring.profiles.active=qa --restart always registry.cn-hangzhou.aliyuncs.com/vgonet/mirror:latest" && \
+
+bash scripts/utils/cmd.sh $target "docker rm -f mirror-en"
+
+bash scripts/utils/cmd.sh $target "docker run --name mirror-en -d -p 39123:8080 -e spring.profiles.active=qa2 --restart always registry.cn-hangzhou.aliyuncs.com/vgonet/mirror:latest"
+

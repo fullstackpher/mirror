@@ -1,0 +1,70 @@
+plugins {
+    id 'org.springframework.boot' version "$springBootVersion"
+    id 'io.spring.dependency-management' version "$springDependencyManagementVersion"
+}
+
+allprojects {
+    if (subprojects.size() > 0 && name != rootProject.name) return
+    if (name == "documents" || projectDir.parentFile.name == "frontends") return
+
+    version '1.0.0'
+
+    apply from: "$rootDir/gradle/config/scripts/java.gradle"
+    apply from: "$rootDir/gradle/config/scripts/junit.gradle"
+    apply from: "$rootDir/gradle/config/scripts/style.gradle"
+    apply from: "$rootDir/gradle/config/scripts/coverage.gradle"
+    apply from: "$rootDir/style.gradle"
+
+    dependencies {
+        compileOnly "org.projectlombok:lombok:$lombokVersion"
+        implementation "com.google.guava:guava:$guavaVersion"
+        implementation "org.apache.commons:commons-lang3:$commonsLang3Version"
+        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+        testCompileOnly "org.projectlombok:lombok:$lombokVersion"
+        testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+        implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+    }
+
+    test.dependsOn(checkstyleMain)
+}
+
+subprojects {
+    apply plugin: 'java-library'
+}
+
+dependencies {
+//    implementation project(":basic.gateways")
+//    implementation project(":service.gateways")
+//    implementation project(":tasks.gateways")
+//    implementation project(":workflow.gateways")
+    implementation project(":application.core")
+    implementation project(":context.core")
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb:$springDataMongodbVersion")
+    implementation("com.github.cloudyrock.mongock:mongock-spring-v5")
+    implementation("com.github.cloudyrock.mongock:mongodb-springdata-v2-driver")
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+    implementation('org.springframework.cloud:spring-cloud-starter-config')
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-ribbon')
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
+    implementation('com.alibaba:druid:1.2.8')
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.testcontainers:junit-jupiter:1.16.0")
+    testImplementation("org.testcontainers:mongodb:1.16.0")
+    testImplementation("org.testcontainers:mariadb:1.16.0")
+    testImplementation("net.java.dev.jna:jna:5.7.0")
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        mavenBom "com.github.cloudyrock.mongock:mongock-bom:$mongockVersion"
+    }
+}
+
+apply from: "$rootDir/gradle/config/scripts/coverage-all.gradle"
+apply from: "./coverage.gradle"

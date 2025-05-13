@@ -1,0 +1,15 @@
+eureka:
+  client:
+    enabled: false
+spring:
+  profiles:
+    active: test
+  application:
+    name: ngtv
+  cloud:
+    config:
+      enabled: false
+      profile: ${spring.profiles.active}
+      label: master
+    discovery:
+      enabled: false

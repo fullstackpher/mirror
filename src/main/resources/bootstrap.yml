@@ -1,0 +1,19 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.username}:${eureka.password}@efsoft-registry-server:9500/eureka/
+  instance:
+    prefer-ip-address: true
+spring:
+  application:
+    name: ngtv
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: efsoft-config-server
+      profile: ${spring.profiles.active}
+      label: master
+  main:
+    allow-bean-definition-overriding: true
+

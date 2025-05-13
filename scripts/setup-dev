@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+docker rm -f ngtvdb
+
+if ! (docker run --name mirrordb -d -p 27019:27017 --restart always mongo:4.0); then
+  echo "Failed to start main database service"
+  exit 1
+fi
+
+echo "Dev environment setup completed, enjoy please!"
