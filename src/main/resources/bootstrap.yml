@@ -1,17 +1,17 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://${eureka.username}:${eureka.password}@efsoft-registry-server:9500/eureka/
+      defaultZone: http://${eureka.username}:${eureka.password}@gsoft-registry-server:9500/eureka/
   instance:
     prefer-ip-address: true
 spring:
   application:
-    name: ngtv
+    name: mirror
   cloud:
     config:
       discovery:
         enabled: true
-        serviceId: efsoft-config-server
+        serviceId: gsoft-config-server
       profile: ${spring.profiles.active}
       label: master
   main:

@@ -1,0 +1,5 @@
+dependencies {
+    api project(":resource.domain")
+    api project(":application.core")
+    implementation project(":context.core")
+}

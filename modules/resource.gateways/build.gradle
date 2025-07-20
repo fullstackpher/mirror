@@ -1,0 +1,11 @@
+dependencies {
+    api project(":resource.application")
+    implementation project(":persistence.spring")
+    implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb:$springDataMongodbVersion")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springDataMongodbVersion")
+    implementation("mysql:mysql-connector-java:$mysqlVersion")
+    implementation("com.amazonaws:aws-java-sdk-core:$awsJavaSdkVersion")
+    implementation("com.amazonaws:aws-java-sdk-sts:$awsJavaSdkVersion")
+    implementation("com.amazonaws:aws-java-sdk-s3:$awsJavaSdkVersion")
+}

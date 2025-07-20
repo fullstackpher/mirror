@@ -5,7 +5,7 @@ spring:
   profiles:
     active: test
   application:
-    name: ngtv
+    name: mirror
   cloud:
     config:
       enabled: false

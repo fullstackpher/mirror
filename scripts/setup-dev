@@ -1,9 +1,20 @@
 #!/usr/bin/env sh
 
-docker rm -f ngtvdb
+docker rm -f mirrordb
+docker rm -f syncdb
 
 if ! (docker run --name mirrordb -d -p 27019:27017 --restart always mongo:4.0); then
   echo "Failed to start main database service"
+  exit 1
+fi
+
+if ! (docker run --name syncdb -d -p 3308:3306 -e MYSQL_ROOT_PASSWORD=test -e MYSQL_DATABASE=syncdb --restart always mysql:8.0); then
+  echo "Failed to start sync database service"
+  exit 1
+fi
+
+if ! (docker exec syncdb mysqladmin -uroot -ptest create syncdb); then
+  echo "Failed to create sync database"
   exit 1
 fi
 

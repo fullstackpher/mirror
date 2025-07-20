@@ -1,6 +1,6 @@
-//package vip.ngtv.frameworks.persistence.spring;
+//package cn.vgonet.mirror.frameworks.persistence.spring;
 //
-//import vip.ngtv.frameworks.domain.core.Page;
+//import cn.vgonet.mirror.frameworks.domain.core.Page;
 //
 //import java.util.List;
 //import java.util.function.Function;
