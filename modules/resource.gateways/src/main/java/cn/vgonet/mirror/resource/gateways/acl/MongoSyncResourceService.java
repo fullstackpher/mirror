@@ -15,6 +15,6 @@ public class MongoSyncResourceService implements SyncResourceService {
 
     @Override
     public void sync() {
-        sourceRepository.findAll().forEach(source -> resourceRepository.save(source.toResource().asDomain()));
+        sourceRepository.findAll().forEach(source -> resourceRepository.save(source.toResource()));
     }
 }

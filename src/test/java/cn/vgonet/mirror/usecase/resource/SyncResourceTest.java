@@ -40,6 +40,12 @@ public class SyncResourceTest extends IntegrationTest {
         assertThat(response.<String>value("$.errcode")).isEqualTo("0");
         assertThat(response.<String>value("$.errmsg")).isEqualTo("");
         assertThat(response.<String>value("$.data.id")).isEqualTo("1001");
+        cn.vgonet.mirror.resource.domain.Resource resource = resourceRepository.resourceForId("1001");
+        assertThat(resource.title()).isEqualTo("v1");
+        assertThat(resource.description()).isEqualTo("c001");
+        assertThat(resource.type()).isEqualTo("中创网");
+        assertThat(resource.link()).isEqualTo("link1");
+        assertThat(resource.createAt()).isEqualTo(Date.from(Instant.parse("2023-01-01T00:00:00Z")));
     }
 
 

@@ -36,7 +36,7 @@ public class JpaSource {
         this.createAt = source.createAt();
     }
 
-    public MongoResource toResource() {
-        return new MongoResource(new Resource(id, title, description, type, link, createAt));
+    public Resource toResource() {
+        return new Resource(id, title, description, type, link, createAt);
     }
 }

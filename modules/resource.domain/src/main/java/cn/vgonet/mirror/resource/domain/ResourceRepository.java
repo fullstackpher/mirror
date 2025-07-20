@@ -6,4 +6,6 @@ public interface ResourceRepository {
     void save(Resource resource);
 
     Resource resourceForFirst();
+
+    Resource resourceForId(String id);
 }

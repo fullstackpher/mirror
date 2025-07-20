@@ -15,7 +15,7 @@ public class MongoResourceRepository implements ResourceRepository {
     private @Autowired MongoTemplate mongoTemplate;
     @Override
     public void removeAll() {
-        mongoTemplate.remove(Resource.class).all();
+        mongoTemplate.remove(MongoResource.class).all();
     }
 
     @Override
@@ -29,5 +29,10 @@ public class MongoResourceRepository implements ResourceRepository {
                 .with(Sort.by(Sort.Direction.ASC, "create_at")) // 假设有createTime字段
                 .limit(1);
         return Objects.requireNonNull(mongoTemplate.findOne(query, MongoResource.class)).asDomain();
+    }
+
+    @Override
+    public Resource resourceForId(String id) {
+        return Objects.requireNonNull(mongoTemplate.findById(id, MongoResource.class)).asDomain();
     }
 }
