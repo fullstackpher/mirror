@@ -28,7 +28,7 @@ public class MongoResource {
         this.createdAt = resource.createdAt();
     }
 
-    public Resource asDomain() {
+    public Resource toDomain() {
         return new Resource(id, title, description, type, link, createdAt);
     }
 }
