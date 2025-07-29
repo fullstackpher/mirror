@@ -7,12 +7,12 @@ import java.time.LocalDateTime;
 
 @Getter
 public class GetUserProfileOutput {
-    private String userId;
-    private String username;
-    private String email;
-    private LocalDateTime registerDate;
-    private String referralCode;
-    private boolean active;
+    private final String userId;
+    private final String username;
+    private final String email;
+    private final LocalDateTime registerDate;
+    private final String referralCode;
+    private final boolean active;
 
     public GetUserProfileOutput(User user) {
         this.userId = user.userId();

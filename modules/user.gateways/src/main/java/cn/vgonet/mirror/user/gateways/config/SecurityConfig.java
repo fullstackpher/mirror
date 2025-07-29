@@ -25,7 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/test-**",
             "/ping",
             "/ci",
-            "/resources/**"
+            "/resources/**",
+            "/memberships/**",
+            "/promotions/**",
     };
 
     @Bean
