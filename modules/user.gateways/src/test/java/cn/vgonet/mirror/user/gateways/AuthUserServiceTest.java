@@ -2,11 +2,10 @@ package cn.vgonet.mirror.user.gateways;
 
 import cn.vgonet.mirror.user.domain.UserRepository;
 import cn.vgonet.mirror.user.domain.UserService;
-import cn.vgonet.mirror.user.gateways.acl.JwtTokenService;
 import cn.vgonet.mirror.user.gateways.acl.AuthUserService;
+import cn.vgonet.mirror.user.gateways.acl.JwtTokenService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,7 +18,6 @@ public class AuthUserServiceTest {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private JwtTokenService jwtTokenService;
-    private ApplicationEventPublisher eventPublisher;
     private static final String VALID_USERNAME = "validUser123";
     private static final String VALID_EMAIL = "valid@email.com";
     private static final String VALID_PASSWORD = "validPass123";
@@ -30,8 +28,7 @@ public class AuthUserServiceTest {
         userRepository = mock(UserRepository.class);
         passwordEncoder = mock(PasswordEncoder.class);
         jwtTokenService = mock(JwtTokenService.class);
-        eventPublisher = mock(ApplicationEventPublisher.class);
-        userService = new AuthUserService(passwordEncoder, jwtTokenService, eventPublisher, userRepository);
+        userService = new AuthUserService(passwordEncoder, jwtTokenService, userRepository);
     }
 
     @Test

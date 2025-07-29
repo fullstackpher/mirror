@@ -1,7 +1,8 @@
 package cn.vgonet.mirror.user.gateways.acl;
 
-import cn.vgonet.mirror.user.domain.*;
-import org.springframework.context.ApplicationEventPublisher;
+import cn.vgonet.mirror.user.domain.User;
+import cn.vgonet.mirror.user.domain.UserRepository;
+import cn.vgonet.mirror.user.domain.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +14,13 @@ public class AuthUserService implements UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenService jwtTokenService;
-    private final ApplicationEventPublisher eventPublisher;
     private final UserRepository userRepository;
 
     public AuthUserService(PasswordEncoder passwordEncoder,
                            JwtTokenService jwtTokenService,
-                           ApplicationEventPublisher eventPublisher, UserRepository userRepository) {
+                           UserRepository userRepository) {
         this.passwordEncoder = passwordEncoder;
         this.jwtTokenService = jwtTokenService;
-        this.eventPublisher = eventPublisher;
         this.userRepository = userRepository;
     }
 
@@ -66,17 +65,5 @@ public class AuthUserService implements UserService {
     @Override
     public String extractUserIdFromToken(String token) {
         return jwtTokenService.extractUserId(token);
-    }
-
-    @Override
-    public void publishUserRegisteredEvent(User user) {
-        UserRegisteredEvent event = new UserRegisteredEvent(
-            user.userId(),
-            user.username(),
-            user.email(),
-            user.referralCode(),
-            user.registerDate()
-        );
-        eventPublisher.publishEvent(event);
     }
 }

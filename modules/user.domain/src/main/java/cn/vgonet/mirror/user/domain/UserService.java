@@ -21,8 +21,4 @@ public interface UserService {
      * 从令牌中提取用户ID.
      */
     String extractUserIdFromToken(String token);
-    /**
-     * 发布用户注册事件.
-     */
-    void publishUserRegisteredEvent(User user);
 }

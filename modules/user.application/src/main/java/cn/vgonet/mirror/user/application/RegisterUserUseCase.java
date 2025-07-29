@@ -22,7 +22,6 @@ public class RegisterUserUseCase {
             input.getReferralCode()
         );
         userRepository.save(user);
-        userService.publishUserRegisteredEvent(user);
         return userRepository.userForUserName(input.getUsername()).userId();
     }
 }

@@ -2,49 +2,51 @@ package cn.vgonet.mirror.user.gateways.persistence;
 
 import cn.vgonet.mirror.user.domain.User;
 import cn.vgonet.mirror.user.domain.UserRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public class MongoUserRepository implements UserRepository {
-    
-    private final SpringDataMongoUserRepository springDataRepository;
-    
-    public MongoUserRepository(SpringDataMongoUserRepository springDataRepository) {
-        this.springDataRepository = springDataRepository;
-    }
-    
+public interface MongoUserRepository extends MongoRepository<MongoUser, String>, UserRepository {
     @Override
-    public void save(User user) {
-        MongoUser mongoUser = new MongoUser(user);
-        springDataRepository.save(mongoUser);
+    default void save(User user) {
+        save(new MongoUser(user)).toDomain();
     }
-    
+
+
     @Override
-    public User userForId(String userId) {
-        return springDataRepository.findById(userId)
+    default User userForId(String userId) {
+        return findById(userId)
                 .map(MongoUser::toDomain)
                 .orElse(null);
     }
     
     @Override
-    public User userForUserName(String username) {
-        return springDataRepository.findByUsername(username)
+    default User userForUserName(String username) {
+        return findByUsername(username)
                 .map(MongoUser::toDomain)
                 .orElse(null);
     }
 
     @Override
-    public boolean userExistsForUsername(String username) {
-        return springDataRepository.existsByUsername(username);
+    default boolean userExistsForUsername(String username) {
+        return existsByUsername(username);
     }
     
     @Override
-    public boolean UserExistsForEmail(String email) {
-        return springDataRepository.existsByEmail(email);
+    default boolean UserExistsForEmail(String email) {
+        return existsByEmail(email);
     }
     
     @Override
-    public void removeAll() {
-        springDataRepository.deleteAll();
+    default void removeAll() {
+        deleteAll();
     }
+
+    Optional<MongoUser> findByUsername(String username);
+
+    boolean existsByUsername(String username);
+
+    boolean existsByEmail(String email);
 }
