@@ -6,13 +6,13 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class GetMembershipOutput {
+public class MembershipListItem {
     private final String id;
     private final String level;
     private final LocalDateTime createdAt;
     private final Boolean isActive;
 
-    public GetMembershipOutput(Membership membership) {
+    public MembershipListItem(Membership membership) {
         this.id = membership.id();
         this.level = membership.level();
         this.createdAt = membership.createdAt();

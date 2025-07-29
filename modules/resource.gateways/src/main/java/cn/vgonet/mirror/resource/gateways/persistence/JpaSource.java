@@ -25,7 +25,7 @@ public class JpaSource {
     @Column(nullable = false)
     private String link;
     @Column(nullable = false)
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     public JpaSource(Source source) {
         this.id = source.id();
@@ -33,10 +33,10 @@ public class JpaSource {
         this.description = source.description();
         this.type = source.type();
         this.link = source.link();
-        this.createAt = source.createAt();
+        this.createdAt = source.createdAt();
     }
 
     public Resource toResource() {
-        return new Resource(id, title, description, type, link, createAt);
+        return new Resource(id, title, description, type, link, createdAt);
     }
 }

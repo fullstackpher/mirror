@@ -8,15 +8,15 @@ public class Resource {
     private final String description;
     private final String type;
     private final String link;
-    private final LocalDateTime createAt;
+    private final LocalDateTime createdAt;
 
-    public Resource(String id, String title, String description, String type, String link, LocalDateTime createAt) {
+    public Resource(String id, String title, String description, String type, String link, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.type = type;
         this.link = link;
-        this.createAt = createAt;
+        this.createdAt = createdAt;
     }
 
     public String id() {
@@ -39,7 +39,7 @@ public class Resource {
         return link;
     }
 
-    public LocalDateTime createAt() {
-        return createAt;
+    public LocalDateTime createdAt() {
+        return createdAt;
     }
 }

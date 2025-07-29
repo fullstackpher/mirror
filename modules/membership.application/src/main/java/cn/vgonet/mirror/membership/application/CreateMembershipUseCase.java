@@ -14,7 +14,7 @@ public class CreateMembershipUseCase {
 
     public Object execute(CreateMembershipInput input) {
         Membership membership = new Membership(input.getId(), input.getLevel(),
-                input.getCreateAt(), input.getIsActive());
+                input.getCreatedAt(), input.getIsActive());
         membershipRepository.save(membership);
         return membership.id();
     }

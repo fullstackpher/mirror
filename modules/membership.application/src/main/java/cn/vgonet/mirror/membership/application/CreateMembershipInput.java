@@ -10,6 +10,6 @@ import java.time.LocalDateTime;
 public class CreateMembershipInput {
     private String id;
     private String level;
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
     private Boolean isActive;
 }

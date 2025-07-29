@@ -17,7 +17,7 @@ public class MongoResource {
     private @Field("type") String type;
     private @Field("description") String description;
     private @Field("link") String link;
-    private @Field("create_at") LocalDateTime createAt;
+    private @Field("created_at") LocalDateTime createdAt;
 
     public MongoResource(Resource resource) {
         this.id = resource.id();
@@ -25,10 +25,10 @@ public class MongoResource {
         this.type = resource.type();
         this.description = resource.description();
         this.link = resource.link();
-        this.createAt = resource.createAt();
+        this.createdAt = resource.createdAt();
     }
 
     public Resource asDomain() {
-        return new Resource(id, title, description, type, link, createAt);
+        return new Resource(id, title, description, type, link, createdAt);
     }
 }

@@ -12,21 +12,21 @@ import java.time.LocalDateTime;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Document(collation = "memberships")
+@Document(collection = "memberships")
 public class MongoMembership {
     private @Id String id;
     private @Field("level") String level;
-    private @Field("create_at") LocalDateTime createAt;
+    private @Field("created_at") LocalDateTime createdAt;
     private @Field("is_active") Boolean isActive;
 
     public MongoMembership(Membership membership) {
         this.id = membership.id();
         this.level = membership.level();
-        this.createAt = membership.createAt();
+        this.createdAt = membership.createdAt();
         this.isActive = membership.isActive();
     }
 
     public Membership toDomain() {
-        return new Membership(id, level, createAt, isActive);
+        return new Membership(id, level, createdAt, isActive);
     }
 }

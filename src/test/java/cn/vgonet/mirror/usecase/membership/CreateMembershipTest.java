@@ -33,7 +33,7 @@ public class CreateMembershipTest extends IntegrationTest {
         assertThat(response.<String>value("$.data.id")).isEqualTo("1002");
         Membership membership = membershipRepository.membershipFor("1002");
         assertThat(membership.level()).isEqualTo("月会员");
-        assertThat(membership.createAt()).isEqualTo(LocalDateTime.parse("2022-01-01T00:00:00"));
+        assertThat(membership.createdAt()).isEqualTo(LocalDateTime.parse("2022-01-01T00:00:00"));
         assertThat(membership.isActive()).isTrue();
     }
 
@@ -41,7 +41,7 @@ public class CreateMembershipTest extends IntegrationTest {
         return Map.of(
                 "id", "1002",
                 "level", "月会员",
-                "createAt", "2022-01-01T00:00:00",
+                "createdAt", "2022-01-01T00:00:00",
                 "isActive", true
         );
     }

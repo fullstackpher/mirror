@@ -46,7 +46,7 @@ public class SyncResourceTest extends IntegrationTest {
         assertThat(resource.description()).isEqualTo("c001");
         assertThat(resource.type()).isEqualTo("中创网");
         assertThat(resource.link()).isEqualTo("link1");
-        assertThat(resource.createAt()).isEqualTo(LocalDateTime.parse("2025-07-29T00:00:00"));
+        assertThat(resource.createdAt()).isEqualTo(LocalDateTime.parse("2025-07-29T00:00:00"));
 
     }
 

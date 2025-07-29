@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 public class Membership {
     private final String id;
     private final String level;
-    private final LocalDateTime createAt;
+    private final LocalDateTime createdAt;
     private final Boolean isActive;
 
-    public Membership(String id, String level, LocalDateTime createAt, Boolean isActive) {
+    public Membership(String id, String level, LocalDateTime createdAt, Boolean isActive) {
         this.id = id;
         this.level = level;
-        this.createAt = createAt;
+        this.createdAt = createdAt;
         this.isActive = isActive;
     }
 
@@ -23,8 +23,8 @@ public class Membership {
         return level;
     }
 
-    public LocalDateTime createAt() {
-        return createAt;
+    public LocalDateTime createdAt() {
+        return createdAt;
     }
 
     public Boolean isActive() {
