@@ -20,13 +20,13 @@ public class RegisterUserTest extends IntegrationTest {
 
     @Test
     void should_be_able_to_register_user_successfully() {
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("username", "testuser");
-        requestBody.put("email", "test@example.com");
-        requestBody.put("password", "password123");
-        requestBody.put("referralCode", "REF123");
+        Map<String, Object> registerInfo = new HashMap<>();
+        registerInfo.put("username", "testuser");
+        registerInfo.put("email", "test@example.com");
+        registerInfo.put("password", "password123");
+        registerInfo.put("referralCode", "REF123");
 
-        TestResponse response = post("/users/register", requestBody);
+        TestResponse response = post("/users/register", registerInfo);
         
         assertThat(response.statusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.<String>value("$.errcode")).isEqualTo("0");
@@ -39,6 +39,7 @@ public class RegisterUserTest extends IntegrationTest {
         assertThat(user.email()).isEqualTo("test@example.com");
         assertThat(user.referralCode()).isEqualTo("REF123");
         assertThat(user.isActive()).isTrue();
+
     }
 
     @AfterEach

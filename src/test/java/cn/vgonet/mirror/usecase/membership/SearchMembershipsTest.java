@@ -19,16 +19,11 @@ public class SearchMembershipsTest extends IntegrationTest {
 
     @BeforeEach
     void setup() {
-        membershipRepository.save(new Membership("1001", "永久会员",
-                LocalDateTime.parse("2022-01-01T00:00:00"), true));
-        membershipRepository.save(new Membership("1002", "永久会员",
-                LocalDateTime.parse("2022-01-01T00:00:00"), true));
-        membershipRepository.save(new Membership("1003", "永久会员",
-                LocalDateTime.parse("2022-01-01T00:00:00"), true));
-        membershipRepository.save(new Membership("1004", "level2",
-                LocalDateTime.parse("2022-01-01T00:00:00"), true));
-        membershipRepository.save(new Membership("1005", "level3",
-                LocalDateTime.parse("2022-01-01T00:00:00"), true));
+        membershipRepository.save(new Membership("1001", "永久会员", LocalDateTime.parse("2022-01-01T00:00:00"), LocalDateTime.parse("2022-01-02T00:00:00"), true));
+        membershipRepository.save(new Membership("1002", "永久会员", LocalDateTime.parse("2022-01-01T00:00:00"), LocalDateTime.parse("2022-01-02T00:00:00"), true));
+        membershipRepository.save(new Membership("1003", "永久会员", LocalDateTime.parse("2022-01-01T00:00:00"), LocalDateTime.parse("2022-01-02T00:00:00"), true));
+        membershipRepository.save(new Membership("1004", "level2", LocalDateTime.parse("2022-01-01T00:00:00"), LocalDateTime.parse("2022-01-02T00:00:00"), true));
+        membershipRepository.save(new Membership("1005", "level3", LocalDateTime.parse("2022-01-01T00:00:00"), LocalDateTime.parse("2022-01-02T00:00:00"), true));
     }
 
     @Test
@@ -44,6 +39,7 @@ public class SearchMembershipsTest extends IntegrationTest {
         assertThat(response.<String>value("$.data.content[0].id")).isEqualTo("1003");
         assertThat(response.<String>value("$.data.content[0].level")).isEqualTo("永久会员");
         assertThat(response.<String>value("$.data.content[0].createdAt")).isEqualTo("2022-01-01T00:00:00");
+        assertThat(response.<String>value("$.data.content[0].expiredAt")).isEqualTo("2022-01-02T00:00:00");
         assertThat(response.<Boolean>value("$.data.content[0].isActive")).isTrue();
     }
 

@@ -22,6 +22,7 @@ public class MongoUser {
     private LocalDateTime registerDate;
     private String referralCode;
     private Boolean isActive;
+
     public MongoUser(User user) {
         this.userId = user.userId();
         this.username = user.username();
@@ -31,15 +32,16 @@ public class MongoUser {
         this.referralCode = user.referralCode();
         this.isActive = user.isActive();
     }
+
     public User toDomain() {
         return new User(
-            userId,
-            username,
-            email,
-            passwordHash,
-            registerDate,
-            referralCode,
-            isActive
+                userId,
+                username,
+                email,
+                passwordHash,
+                registerDate,
+                referralCode,
+                isActive
         );
     }
 }

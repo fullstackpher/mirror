@@ -11,5 +11,6 @@ public class CreateMembershipInput {
     private String id;
     private String level;
     private LocalDateTime createdAt;
+    private LocalDateTime expiredAt;
     private Boolean isActive;
 }

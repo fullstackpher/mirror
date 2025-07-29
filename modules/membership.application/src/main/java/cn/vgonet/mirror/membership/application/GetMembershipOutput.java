@@ -10,12 +10,14 @@ public class GetMembershipOutput {
     private final String id;
     private final String level;
     private final LocalDateTime createdAt;
+    private final LocalDateTime expiredAt;
     private final Boolean isActive;
 
     public GetMembershipOutput(Membership membership) {
         this.id = membership.id();
         this.level = membership.level();
         this.createdAt = membership.createdAt();
+        this.expiredAt = membership.expiredAt();
         this.isActive = membership.isActive();
     }
 }

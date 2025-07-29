@@ -19,7 +19,8 @@ public class GetMembershipTest extends IntegrationTest {
     @BeforeEach
     void setUp() {
         Membership membership = new Membership("1001", "永久会员",
-                LocalDateTime.parse("2022-01-01T00:00:00"), true);
+                LocalDateTime.parse("2022-01-01T00:00:00"),
+                LocalDateTime.parse("2022-01-02T00:00:00"), true);
         membershipRepository.save(membership);
     }
 
@@ -32,6 +33,7 @@ public class GetMembershipTest extends IntegrationTest {
         assertThat(response.<String>value("$.data.id")).isEqualTo("1001");
         assertThat(response.<String>value("$.data.level")).isEqualTo("永久会员");
         assertThat(response.<String>value("$.data.createdAt")).isEqualTo("2022-01-01T00:00:00");
+        assertThat(response.<String>value("$.data.expiredAt")).isEqualTo("2022-01-02T00:00:00");
         assertThat(response.<Boolean>value("$.data.isActive")).isTrue();
     }
 
