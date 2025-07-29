@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 public class User {
     private final String userId;
+    private String membershipId;
     private final String username;
     private final String email;
     private final String passwordHash;
@@ -36,8 +37,29 @@ public class User {
         this.isActive = isActive;
     }
 
+    public User(String userId, String membershipId, String username, String email, String passwordHash,
+                LocalDateTime registerDate, String referralCode, Boolean isActive) {
+        verify(username, email, passwordHash);
+        this.userId = userId;
+        this.membershipId = membershipId;
+        this.username = username;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.registerDate = registerDate;
+        this.referralCode = referralCode;
+        this.isActive = isActive;
+    }
+
+    public void assignMembership(String membershipId) {
+        this.membershipId = membershipId;
+    }
+
     public String userId() {
         return userId;
+    }
+
+    public String membershipId() {
+        return membershipId;
     }
 
     public String username() {

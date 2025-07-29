@@ -35,6 +35,7 @@ public class RegisterUserTest extends IntegrationTest {
 
         User user = userRepository.userForUserName("testuser");
         assertThat(user).isNotNull();
+        assertThat(user.membershipId()).hasSize(36);
         assertThat(user.username()).isEqualTo("testuser");
         assertThat(user.email()).isEqualTo("test@example.com");
         assertThat(user.referralCode()).isEqualTo("REF123");

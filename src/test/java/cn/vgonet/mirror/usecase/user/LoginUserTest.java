@@ -41,6 +41,8 @@ public class LoginUserTest extends IntegrationTest {
         assertThat(response.<String>value("$.errmsg")).isEqualTo("");
         assertThat(response.<String>value("$.data.username")).isEqualTo("testuser");
         assertThat(response.<String>value("$.data.email")).isEqualTo("test@example.com");
+        assertThat(response.<String>value("$.data.membershipId")).isNotNull();
+        assertThat(response.<String>value("$.data.membershipId")).hasSize(36);
         assertThat(response.<String>value("$.data.token")).isNotNull();
         assertThat(response.<String>value("$.data.token")).isNotEmpty();
     }
