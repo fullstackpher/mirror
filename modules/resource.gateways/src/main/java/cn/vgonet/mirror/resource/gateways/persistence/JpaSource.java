@@ -6,7 +6,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "source")
@@ -25,7 +25,7 @@ public class JpaSource {
     @Column(nullable = false)
     private String link;
     @Column(nullable = false)
-    private Date createAt;
+    private LocalDateTime createAt;
 
     public JpaSource(Source source) {
         this.id = source.id();

@@ -1,6 +1,8 @@
 package cn.vgonet.mirror.usecase.resource;
 
-import cn.vgonet.mirror.resource.domain.*;
+import cn.vgonet.mirror.resource.domain.ResourceRepository;
+import cn.vgonet.mirror.resource.domain.Source;
+import cn.vgonet.mirror.resource.domain.SyncResourceService;
 import cn.vgonet.mirror.resource.gateways.persistence.JpaSource;
 import cn.vgonet.mirror.resource.gateways.persistence.JpaSourceRepository;
 import cn.vgonet.mirror.test.IntegrationTest;
@@ -11,8 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
 import javax.annotation.Resource;
-import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,7 +25,7 @@ public class SyncResourceTest extends IntegrationTest {
 
     @BeforeEach
     void setUp() {
-        Date fixedDate = Date.from(Instant.parse("2023-01-01T00:00:00Z"));
+        LocalDateTime fixedDate = LocalDateTime.parse("2025-07-29T00:00:00");
         jpaSourceRepository.save(new JpaSource(new Source("1001", "v1", "c001", "中创网",
                 "link1", fixedDate)));
         jpaSourceRepository.save(new JpaSource(new Source("1002", "v2", "c002", "福缘网",
@@ -45,7 +46,8 @@ public class SyncResourceTest extends IntegrationTest {
         assertThat(resource.description()).isEqualTo("c001");
         assertThat(resource.type()).isEqualTo("中创网");
         assertThat(resource.link()).isEqualTo("link1");
-        assertThat(resource.createAt()).isEqualTo(Date.from(Instant.parse("2023-01-01T00:00:00Z")));
+        assertThat(resource.createAt()).isEqualTo(LocalDateTime.parse("2025-07-29T00:00:00"));
+
     }
 
 

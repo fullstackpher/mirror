@@ -1,6 +1,6 @@
 package cn.vgonet.mirror.resource.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Resource {
     private final String id;
@@ -8,9 +8,9 @@ public class Resource {
     private final String description;
     private final String type;
     private final String link;
-    private final Date createAt;
+    private final LocalDateTime createAt;
 
-    public Resource(String id, String title, String description, String type, String link, Date createAt) {
+    public Resource(String id, String title, String description, String type, String link, LocalDateTime createAt) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -39,7 +39,7 @@ public class Resource {
         return link;
     }
 
-    public Date createAt() {
+    public LocalDateTime createAt() {
         return createAt;
     }
 }
