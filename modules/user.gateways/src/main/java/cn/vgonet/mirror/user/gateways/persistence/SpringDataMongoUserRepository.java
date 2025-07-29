@@ -9,9 +9,7 @@ import java.util.Optional;
 public interface SpringDataMongoUserRepository extends MongoRepository<MongoUser, String> {
     
     Optional<MongoUser> findByUsername(String username);
-    
-    Optional<MongoUser> findByEmail(String email);
-    
+
     boolean existsByUsername(String username);
     
     boolean existsByEmail(String email);
