@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 
 public class Membership {
     private final String id;
-    private final String level;
+    private String level;
     private final LocalDateTime createdAt;
-    private final LocalDateTime expiredAt;
+    private LocalDateTime expiredAt;
     private final Boolean isActive;
 
     public Membership(String id, String level, LocalDateTime createdAt, LocalDateTime expiredAt, Boolean isActive) {
@@ -15,6 +15,11 @@ public class Membership {
         this.createdAt = createdAt;
         this.expiredAt = expiredAt;
         this.isActive = isActive;
+    }
+
+    public void upgrade(String level, Long expiredAt) {
+        this.level = level;
+        this.expiredAt = this.expiredAt.plusYears(expiredAt);
     }
 
     public String id() {
